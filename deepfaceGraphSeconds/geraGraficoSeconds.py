@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-with open("/home/lorenzo/Python/TOYlab/deepFace/deepfaceGraphSeconds/emotions_data_seconds.csv", "r") as file:
+with open("/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deepfaceGraphSeconds/emotions_data_seconds.csv", "r") as file:
     lines = file.readlines()
 
 nomes = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
@@ -23,8 +23,8 @@ for linha in lines[1:]:
     # -- armazena o tempo em segundos na lista
     tempo_segundos.append(tempo)
 
-# -- gera o gráfico
-for i, nome_emocao in enumerate(nomes):
+# -- gera o gráfico, ignorando a emoção "Neutral"
+for i, nome_emocao in enumerate(nomes[:-1]):
     plt.plot(tempo_segundos, dados_emocoes[i], label=nome_emocao)
 
 plt.legend(loc='upper right')
@@ -32,4 +32,7 @@ plt.xlabel('Tempo (segundos)')
 plt.ylabel('Expressões Faciais')
 plt.title('Expressões Faciais ao Longo do Tempo')
 
-plt.show()
+
+plt.savefig("/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deepfaceGraphSeconds/result.png")
+
+# plt.show()

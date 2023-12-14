@@ -4,7 +4,7 @@ import pandas as pd
 from deepface import DeepFace
 
 faceCascade = cv2.CascadeClassifier(
-    '/home/lorenzo/Python/TOYlab/deepFace/deep_haar/haarcascade_frontalface_default.xml')
+    '/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deep_haar/haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
 attributes = ("emotion",)
 
@@ -51,7 +51,7 @@ cv2.destroyAllWindows()
 
 # -- cria um DataFrame pandas com os dados das emoções e o tempo decorrido em segundos e salva em um CSV
 df = pd.DataFrame(emotions_data)
-df.to_csv('/home/lorenzo/Python/TOYlab/deepFace/deepfaceGraphSeconds/emotions_data_seconds.csv', index=False)
+df.to_csv('/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deepfaceGraphSeconds/emotions_data_seconds.csv', index=False)
 
 # -- calc do tempo decorrido
 end_time = time.time()
