@@ -4,13 +4,13 @@ import pandas as pd
 from deepface import DeepFace
 
 faceCascade = cv2.CascadeClassifier(
-    '/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deep_haar/haarcascade_frontalface_default.xml')
+    'C:/Users/loren/OneDrive/Documentos/DesenvolvimentoIA/CADAPRecog/deep_haar/haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
 attributes = ("emotion",)
 
-frames = []  # -- lista para armazenar os quadros
-emotions_data = []  # -- lista para armazenar os dados das emoções
-start_time = time.time()  # -- início da gravação
+frames = []
+emotions_data = []
+start_time = time.time()
 
 while True:
     ret, frame = cap.read()
@@ -33,13 +33,10 @@ while True:
                 cv2.LINE_4)
     cv2.imshow('Webcam', frame)
 
-    # -- calcule o tempo decorrido em segundos
     elapsed_time = time.time() - start_time
 
-    # -- armazena o quadro atual
     frames.append(frame)
 
-    # -- extrai os dados das emoções e adiciona à lista de emoções com o tempo decorrido em segundos
     emotions = result[0]['emotion']
     emotions_data.append({'time': elapsed_time, **emotions})
 
@@ -49,11 +46,10 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-# -- cria um DataFrame pandas com os dados das emoções e o tempo decorrido em segundos e salva em um CSV
 df = pd.DataFrame(emotions_data)
-df.to_csv('/home/lorenzo/Python/TOYLAB/DeepfaceRecog/deepfaceGraphSeconds/emotions_data_seconds.csv', index=False)
+df.to_csv('C:/Users/loren/OneDrive/Documentos/DesenvolvimentoIA/CADAPRecog/deepfaceGraphSeconds/emotions_data_seconds'
+          '.csv', index=False)
 
-# -- calc do tempo decorrido
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Tempo de gravação: {elapsed_time:.2f} segundos")
